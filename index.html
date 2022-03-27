@@ -10,12 +10,17 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="libraries/p5.min.js"></script>
   <script src="libraries/p5.sound.min.js"></script>
-  <script defer src="https://cdn.JsDelivr.net/npm/ccapture.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gif.js/dist/gif.worker.js"></script>
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.7.0/dist/ffmpeg.min.js"></script>
+    <!--<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.7.0/dist/ffmpeg.min.js"></script>-->
+    <!--<script src="ffmpeg.min.js"></script>-->
+    <script src="https://raw.githack.com/rndme/download/master/download.js"></script>
+    <script src="https://raw.githack.com/jnordberg/gif.js/master/dist/gif.js"></script>
 </head>
 
 <body>
+  <button id="save_canvas" style="position:absolute;top:50%;left:50%;z-index:3;background-color:white;height:30px;width:30;border-radius:50%;color:white;">🔴</button>
   <script src="sketch.js"></script>
+  <script src="recordCanvas.js"></script>
 </body>
 
 </html>

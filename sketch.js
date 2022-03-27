@@ -222,12 +222,12 @@ function setup() {
   let noPetals = createElement("noPetals", "Jumlah Kelopak");
   noPetals.position(40, 0);
   noPetals.style("color", "white");
-  petalSlider = createSlider(8, 999, 16);
+  petalSlider = createSlider(8, 64, 16);
   petalSlider.position(10, 20);
   let noLayers = createElement("noLayers", "Jumlah Layer");
   noLayers.position(175, 0);
   noLayers.style("color", "white");
-  layersSlider = createSlider(3, 999, 16);
+  layersSlider = createSlider(3, 64, 16);
   layersSlider.position(150, 20);
   let alpha = createElement("alpha", "alpha");
   alpha.position(330, 0);
@@ -333,15 +333,15 @@ function newArt() {
   if (pRand == 1) {
     sym = petalSlider.value();
   } else {
-    sym = random(3, 32);
+    sym = random(4, 64);
   }
   ang = 360 / sym;
   if (lRand == 1) {
     layers = layersSlider.value();
   } else {
-    layers = random(3, 32);
+    layers = random(4, 64);
   }
-  cush = (hSize / layers) * 4; // cushion between each layer
+  cush = (hSize / layers) * random(1, 3); // cushion between each layer
   if (aRand == 1) {
     alph2 = alphaSlider.value();
   } else {
