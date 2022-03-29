@@ -152,7 +152,7 @@
 
 // By Steve's Makerspace
 
-let rate = 1.2; //rate of pedal change 0.4
+let rate = 2; //rate of pedal change 0.4
 let hueyD = 1.1; //rate of color change 1.1
 let fr = 30; //framerate 40
 let chance = 0.3; //chance in 10 of reversal 0.3
@@ -211,8 +211,8 @@ let randOverl = true;
 let c1, c2;
 function setup() {
   frameRate(fr);
-  let size = min(1024, 1024);
-  canvas = createCanvas(1024, 1024);
+  let size = min(windowWidth, windowHeight);
+  canvas = createCanvas(size, size);
   canvas.position(0, 0);
   hSize = size / 2;
   angleMode(DEGREES);
@@ -222,12 +222,12 @@ function setup() {
   let noPetals = createElement("noPetals", "Jumlah Kelopak");
   noPetals.position(40, 0);
   noPetals.style("color", "white");
-  petalSlider = createSlider(8, 64, 16);
+  petalSlider = createSlider(2, 64, 2, 2);
   petalSlider.position(10, 20);
   let noLayers = createElement("noLayers", "Jumlah Layer");
   noLayers.position(175, 0);
   noLayers.style("color", "white");
-  layersSlider = createSlider(3, 64, 16);
+  layersSlider = createSlider(2, 64, 2, 2);
   layersSlider.position(150, 20);
   let alpha = createElement("alpha", "alpha");
   alpha.position(330, 0);
@@ -321,7 +321,7 @@ function setup() {
   randOverlapButton.mousePressed(randOverlap);
   randOverlap();
 
-  colorMode(HSB, 256, 100, 100, 100);
+  colorMode(HSB, 360, 100, 100, 100);
   newArt();
 }
 
@@ -333,15 +333,15 @@ function newArt() {
   if (pRand == 1) {
     sym = petalSlider.value();
   } else {
-    sym = random(4, 64);
+    sym = Math.floor(Math.random() * 30) + 2;
   }
   ang = 360 / sym;
   if (lRand == 1) {
     layers = layersSlider.value();
   } else {
-    layers = random(4, 64);
+    layers = Math.floor(Math.random() * 30) + 2;
   }
-  cush = (hSize / layers) * random(1, 3); // cushion between each layer
+  cush = (hSize / layers) * 4; // cushion between each layer
   if (aRand == 1) {
     alph2 = alphaSlider.value();
   } else {
@@ -417,7 +417,10 @@ function draw() {
       alph = alph2;
     }
     translate(width / 2, height / 2);
-    background(0);
+    background(
+      Math.floor(Math.random() * 254) + 1,
+      Math.floor(Math.random() * 0.9) + 0.1
+    );
     // calculate points for each layer, starting with outside pedals and going inward
     for (let k = 0; k < layers; k++) {
       let Nx1 = array1[k * 14 + 0];
@@ -543,6 +546,7 @@ function draw() {
           bezier(Nx1, 0, Na1x, -Na1y, Na2x, -Na2y, Nx2, 0);
         }
         rotate(ang * 2);
+        ang += 360 / sym / layers / 100000;
       }
     }
     pop();
