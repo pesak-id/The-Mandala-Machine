@@ -152,11 +152,11 @@
 
 // By Steve's Makerspace
 
-let rate = 2; //rate of pedal change 0.4
-let hueyD = 1.1; //rate of color change 1.1
+let rate = 4; //rate of pedal change 0.4
+let hueyD = 2; //rate of color change 1.1
 let fr = 30; //framerate 40
 let chance = 0.3; //chance in 10 of reversal 0.3
-let strokeW = 0.1; // how thick the lines are - try putting to 5
+let strokeW = 0.25; // how thick the lines are - try putting to 5
 let array1 = [];
 let newArray = [];
 let paused = -1;
@@ -211,7 +211,7 @@ let randOverl = true;
 let c1, c2;
 function setup() {
   frameRate(fr);
-  let size = min(windowWidth, windowHeight);
+  let size = min(2048, 2048);
   canvas = createCanvas(size, size);
   canvas.position(0, 0);
   hSize = size / 2;
@@ -328,7 +328,7 @@ function setup() {
 function newArt() {
   array1 = [];
   newArray = [];
-  background(0);
+  background("#fff");
   // get variable values
   if (pRand == 1) {
     sym = petalSlider.value();
