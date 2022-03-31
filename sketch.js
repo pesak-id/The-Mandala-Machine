@@ -152,8 +152,8 @@
 
 // By Steve's Makerspace
 
-let rate = 4; //rate of pedal change 0.4
-let hueyD = 2; //rate of color change 1.1
+let rate = 1; //rate of pedal change 0.4
+let hueyD = 1; //rate of color change 1.1
 let fr = 30; //framerate 40
 let chance = 0.3; //chance in 10 of reversal 0.3
 let strokeW = 0.25; // how thick the lines are - try putting to 5
@@ -211,8 +211,8 @@ let randOverl = true;
 let c1, c2;
 function setup() {
   frameRate(fr);
-  let size = min(2048, 2048);
-  canvas = createCanvas(size, size);
+  let size = min(windowWidth, windowHeight);
+  canvas = createCanvas(4000, 4000);
   canvas.position(0, 0);
   hSize = size / 2;
   angleMode(DEGREES);
@@ -328,7 +328,7 @@ function setup() {
 function newArt() {
   array1 = [];
   newArray = [];
-  background("#fff");
+  background(0);
   // get variable values
   if (pRand == 1) {
     sym = petalSlider.value();
@@ -341,7 +341,7 @@ function newArt() {
   } else {
     layers = Math.floor(Math.random() * 30) + 2;
   }
-  cush = (hSize / layers) * 4; // cushion between each layer
+  cush = (hSize / layers) * 6; // cushion between each layer
   if (aRand == 1) {
     alph2 = alphaSlider.value();
   } else {
@@ -386,7 +386,7 @@ function newArt() {
       a2y = random(20 / j, 245 - j * cush);
     }
     huey = random(256);
-    sat = random(70, 100); //You could play
+    sat = random(50, 100); //You could play
     brt = random(75, 100); //with these too.
     array1.push(
       x1,
@@ -492,8 +492,12 @@ function draw() {
       if (random(10) < chance) {
         NhueyD *= -1;
       }
-
-      fill(Nhuey, sat, brt, alph);
+      let r = Math.floor(Math.random() * 255);
+      let g = Math.floor(Math.random() * 255);
+      let b = Math.floor(Math.random() * 255);
+      //fill(r, g, b, alph);
+      //fill(Nhuey, sat, brt, alph);
+      noFill();
       newArray.push(
         Nx1,
         Nx1D,
@@ -514,7 +518,7 @@ function draw() {
       // draw one set of petals
       for (let i = 0; i < sym / 2; i++) {
         if (strokeYN == 1) {
-          stroke(0);
+          stroke(Nhuey, sat, brt, alph);
           strokeWeight(strokeW);
         } else {
           noStroke();
@@ -546,7 +550,7 @@ function draw() {
           bezier(Nx1, 0, Na1x, -Na1y, Na2x, -Na2y, Nx2, 0);
         }
         rotate(ang * 2);
-        ang += 360 / sym / layers / 100000;
+        ang += 360 / sym / layers / 1000000;
       }
     }
     pop();
