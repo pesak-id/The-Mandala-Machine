@@ -1,5 +1,5 @@
-let rate = 1; //rate of pedal change 0.4
-let hueyD = 1; //rate of color change 1.1
+let rate = 0.4; //rate of pedal change 0.4
+let hueyD = 1.1; //rate of color change 1.1
 let fr = 30; //framerate 40
 let chance = 0.3; //chance in 10 of reversal 0.3
 let strokeW = 0.25; // how thick the lines are - try putting to 5
@@ -57,8 +57,8 @@ let randOverl = true;
 let c1, c2;
 function setup() {
   frameRate(fr);
-  let size = min(windowWidth, windowHeight);
-  canvas = createCanvas(4000, 4000);
+  let size = min(4000, 2000);
+  canvas = createCanvas(4000, 2000);
   canvas.position(0, 0);
   hSize = size / 2;
   angleMode(DEGREES);
@@ -68,12 +68,12 @@ function setup() {
   let noPetals = createElement("noPetals", "Jumlah Kelopak");
   noPetals.position(40, 0);
   noPetals.style("color", "white");
-  petalSlider = createSlider(2, 64, 2, 2);
+  petalSlider = createSlider(4, 128, 64, 2);
   petalSlider.position(10, 20);
   let noLayers = createElement("noLayers", "Jumlah Layer");
   noLayers.position(175, 0);
   noLayers.style("color", "white");
-  layersSlider = createSlider(2, 64, 2, 2);
+  layersSlider = createSlider(4, 128, 64, 2);
   layersSlider.position(150, 20);
   let alpha = createElement("alpha", "alpha");
   alpha.position(330, 0);
@@ -179,15 +179,15 @@ function newArt() {
   if (pRand == 1) {
     sym = petalSlider.value();
   } else {
-    sym = Math.floor(Math.random() * 30) + 2;
+    sym = Math.floor(Math.random() * 63) + 1;
   }
   ang = 360 / sym;
   if (lRand == 1) {
     layers = layersSlider.value();
   } else {
-    layers = Math.floor(Math.random() * 30) + 2;
+    layers = Math.floor(Math.random() * 63) + 1;
   }
-  cush = (hSize / layers) * 6; // cushion between each layer
+  cush = (hSize / layers) * 4; // cushion between each layer
   if (aRand == 1) {
     alph2 = alphaSlider.value();
   } else {
@@ -371,6 +371,8 @@ function draw() {
         }
         if (beziers == 0) {
           beginShape();
+          rotate(ang * 2);
+          ang += 360 / sym / layers / 1000;
           curveVertex(Nx1, 0);
           curveVertex(Nx1, 0);
           curveVertex(Na1x, Na1y);
@@ -380,6 +382,8 @@ function draw() {
           endShape();
 
           beginShape();
+          rotate - ang * 2;
+          ang += 360 / sym / layers / 1000;
           curveVertex(Nx1, 0);
           curveVertex(Nx1, 0);
           curveVertex(Na1x, -Na1y);
