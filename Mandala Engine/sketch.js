@@ -1,5 +1,5 @@
 let rate = 0.4; //rate of pedal change 0.4
-let hueyD = 1.1; //rate of color change 1.1
+let hueyD = 2; //rate of color change 1.1
 let fr = 30; //framerate 40
 let chance = 0.1; //chance in 10 of reversal 0.3
 let strokeW = 0.1; // how thick the lines are - try putting to 5
@@ -57,8 +57,8 @@ let randOverl = true;
 let c1, c2;
 function setup() {
   frameRate(fr);
-  let size = min(1080, 1080);
-  canvas = createCanvas(size, size);
+  let size = min(3840, 2160);
+  canvas = createCanvas(3840, 2160);
   canvas.position(0, 0);
   hSize = size / 2;
   angleMode(DEGREES);
@@ -187,7 +187,7 @@ function newArt() {
   } else {
     layers = Math.floor(Math.random() * 31) + 1;
   }
-  cush = (hSize / layers) * random(4, 12); // cushion between each layer
+  cush = (hSize / layers) * random(8, 24); // cushion between each layer
   if (aRand == 1) {
     alph2 = alphaSlider.value();
   } else {
